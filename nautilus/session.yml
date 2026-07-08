@@ -17,24 +17,34 @@ spec:
       - name: djrhee-sim2real
         image: ghcr.io/selkies-project/nvidia-glx-desktop:24.04-20240924062704
         command: ["/bin/bash"]
+        env:
+        - name: TZ
+          value: "UTC"
+        - name: PASSWD
+          valueFrom:
+            secretKeyRef:
+              name: my-pass
+              key: my-pass
         stdin: true
         tty: true
         resources:
           limits:
             memory: 4Gi
             cpu: "6"
-            nvidia.com/gpu: "0"
+            nvidia.com/gpu: 0
             ephemeral-storage: 35Gi
           requests:
             memory: 4Gi
             cpu: "6"
-            nvidia.com/gpu: "0"
+            nvidia.com/gpu: 0
             ephemeral-storage: 35Gi
         volumeMounts:
         - mountPath: /dev/shm
           name: dshm
+        - mountPath: /cache
+          name: cache-vol
         - mountPath: /home/ubuntu/persistent
-          name: persistent-vol
+          name: root-vol
       dnsPolicy: None
       dnsConfig:
         nameservers:
@@ -43,7 +53,10 @@ spec:
       volumes:
       - name: dshm
         emptyDir: {}
-      - name: persistent-vol
+      - name: cache-vol
+        persistentVolumeClaim:
+          claimName: djrhee-lidarflow-cache
+      - name: root-vol
         persistentVolumeClaim:
           claimName: sim2real-challenge
       affinity:

@@ -1,0 +1,27 @@
+{
+  "frame_id": "000001",
+  "sensor": {
+    "model": "Ouster OS1-64",
+    "num_rings": 64,
+    "num_azimuth": 1024,
+    "horizontal_fov_deg": 360.0,
+    "fov_up_deg": 16.6,
+    "fov_down_deg": -16.6,
+    "max_range_m": 40.0,
+    "frequency_hz": 10
+  },
+  "objects": [
+    {
+      "class": "vehicle",
+      "box": [10.0, 4.0, 0.8, 4.5, 2.0, 1.6, 0.3]
+    },
+    {
+      "class": "pedestrian",
+      "box": [16.0, -3.0, 0.9, 0.7, 0.7, 1.8, -0.4]
+    },
+    {
+      "class": "truck",
+      "box": [25.0, 6.0, 1.6, 8.0, 2.6, 3.2, 0.1]
+    }
+  ]
+}

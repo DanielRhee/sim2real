@@ -1,0 +1,6 @@
+# Local Nautilus config
+nautilus/start.sh
+nautilus/session.yml
+
+# Mac junk
+.DS_Store

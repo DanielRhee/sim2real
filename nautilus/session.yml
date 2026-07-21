@@ -54,8 +54,7 @@ spec:
       - name: dshm
         emptyDir: {}
       - name: cache-vol
-        persistentVolumeClaim:
-          claimName: djrhee-lidarflow-cache
+        emptyDir: {}
       - name: root-vol
         persistentVolumeClaim:
           claimName: sim2real-challenge
